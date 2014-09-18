@@ -18,7 +18,7 @@ namespace EasySocket
 			{
 				if (value < 1 || value > 4)
 					throw new ArgumentOutOfRangeException("The value of HeaderLength must be in the range of 1 to 4.");
-				HeaderLength = value;
+				headerLength = value;
 			}
 		}
 
