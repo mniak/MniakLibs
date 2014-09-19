@@ -41,7 +41,7 @@ namespace EasySocket
 		private ulong ReadHeader()
 		{
 			byte[] header = new byte[HeaderLength];
-			while (socket.Available < HeaderLength && running)
+			while (running && socket.Available < HeaderLength)
 			{
 				Thread.Sleep(100);
 			}
@@ -61,7 +61,7 @@ namespace EasySocket
 			if (!running || length < 1) return null;
 
 			// Wait for all bytes available
-			Helper.TimeoutLoop(() => (ulong)socket.Available < length && running, 5000);
+			Helper.TimeoutLoop(() => running && (ulong)socket.Available < length, 5000);
 
 			// If it is not running then abort
 			if (!running) return null;

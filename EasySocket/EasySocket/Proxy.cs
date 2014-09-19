@@ -6,10 +6,12 @@ using System.Net.Sockets;
 
 namespace EasySocket
 {
-	public class HeaderedProxy<W> where W : Wrapper, new()
+	public class HeaderedProxy<W1, W2> : IDisposable
+		where W1 : Wrapper, new()
+		where W2 : Wrapper, new()
 	{
-		private W source;
-		private W target;
+		private W1 source;
+		private W2 target;
 		private bool running;
 		private Socket socketSource;
 		private Socket socketTarget;
@@ -17,11 +19,11 @@ namespace EasySocket
 		public HeaderedProxy(Socket source, Socket target)
 		{
 			this.socketSource = source;
-			this.source = new W();
+			this.source = new W1();
 			this.source.OnReceived += source_OnReceived;
 
 			this.socketTarget = target;
-			this.target = new W();
+			this.target = new W2();
 			this.target.OnReceived += target_OnReceived;
 		}
 
