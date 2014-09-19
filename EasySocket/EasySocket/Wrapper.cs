@@ -12,25 +12,35 @@ namespace EasySocket
 	{
 		protected Socket socket;
 		protected bool running;
+		protected object lockRunning = new object();
 		private Thread thread;
+		private bool disposed = false;
 		public Wrapper()
 		{
-			this.running = false;
+			lock (lockRunning)
+				this.running = false;
 		}
 
 		public void Start(Socket socket)
 		{
+			if (disposed)
+				throw new ObjectDisposedException("Wrapper");
+
 			this.socket = socket;
-			if (running)
-				throw new EasySocketException("This wrapper is already running.");
-			running = true;
+			lock (lockRunning)
+			{
+				if (running)
+					throw new EasySocketException("This wrapper is already running.");
+				running = true;
+			}
 			thread = new Thread(Process);
 			thread.Name = "Wrapper_Read";
 			thread.Start();
 		}
 		public void Stop()
 		{
-			running = false;
+			lock (lockRunning)
+				running = false;
 		}
 
 		public delegate void RecebidoEventHandler(byte[] bytes);
@@ -64,9 +74,19 @@ namespace EasySocket
 		protected abstract byte[] Receive();
 		public abstract void Send(byte[] bytes);
 
-		public void Dispose()
+		public void CloseAndDisposeSocket()
 		{
 			this.Stop();
+			if (socket.Connected)
+				socket.Disconnect(false);
+			socket.Close();
+			socket.Dispose();
+		}
+
+		public virtual void Dispose()
+		{
+			Stop();
+			disposed = true;
 		}
 	}
 }

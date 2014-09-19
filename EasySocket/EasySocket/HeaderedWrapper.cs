@@ -30,6 +30,8 @@ namespace EasySocket
 				byte[] tudo = header.Unir(bytes);
 				socket.Send(tudo);
 			}
+			else
+				throw new WrapperNotRunningException();
 		}
 
 		protected override byte[] Receive()
