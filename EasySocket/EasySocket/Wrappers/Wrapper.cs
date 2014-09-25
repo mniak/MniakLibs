@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Net.Sockets;
-using EasySocket.Exception;
 using System.Threading;
+using EasySocket.Exception;
 
 namespace EasySocket
 {
@@ -59,10 +56,18 @@ namespace EasySocket
 			{
 				while (running)
 				{
-					byte[] bytes = Receive();
-					if (bytes != null)
-						Received(bytes);
+					try
+					{
+						byte[] bytes = Receive();
+						if (bytes != null)
+							Received(bytes);
+					}
+					catch (ObjectDisposedException) { }
 				}
+			}
+			catch (SocketException ex)
+			{
+				ConnectionClosed();
 			}
 			catch (ThreadAbortException)
 			{
@@ -71,8 +76,16 @@ namespace EasySocket
 				return;
 			}
 		}
+
 		protected abstract byte[] Receive();
-		public abstract void Send(byte[] bytes);
+		public void Send(byte[] bytes)
+		{
+			if (!running)
+				throw new WrapperNotRunningException();
+			InnerSend(bytes);
+		}
+
+		protected abstract void InnerSend(byte[] bytes);
 
 		public void CloseAndDisposeSocket()
 		{
@@ -82,11 +95,17 @@ namespace EasySocket
 			socket.Close();
 			socket.Dispose();
 		}
-
 		public virtual void Dispose()
 		{
 			Stop();
 			disposed = true;
 		}
+
+		private void ConnectionClosed()
+		{
+			if (OnConnectionClosed != null)
+				OnConnectionClosed();
+		}
+		public event Action OnConnectionClosed;
 	}
 }

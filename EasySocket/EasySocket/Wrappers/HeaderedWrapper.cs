@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Net.Sockets;
-using EasySocket.Exception;
-
 namespace EasySocket
 {
 	public class HeaderedWrapper : Wrapper
@@ -22,22 +16,16 @@ namespace EasySocket
 			}
 		}
 
-		public override void Send(byte[] bytes)
+		protected override void InnerSend(byte[] bytes)
 		{
-			if (running)
-			{
-				byte[] header = bytes.GetHeader(HeaderLength);
-				byte[] tudo = header.Unir(bytes);
-				socket.Send(tudo);
-			}
-			else
-				throw new WrapperNotRunningException();
+			byte[] header = bytes.GetHeader(HeaderLength);
+			byte[] all = header.Unir(bytes);
+			socket.Send(all);
 		}
-
 		protected override byte[] Receive()
 		{
-			ulong tamanho = ReadHeader();
-			byte[] bytes = ReadBody(tamanho);
+			ulong length = ReadHeader();
+			byte[] bytes = ReadBody(length);
 			return bytes;
 		}
 		private ulong ReadHeader()

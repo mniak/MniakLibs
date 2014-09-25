@@ -40,13 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Wrappers\SimpleWrapper.cs" />
     <Compile Include="Exception\WrapperNotRunningException.cs" />
-    <Compile Include="HeaderedWrapper.cs" />
+    <Compile Include="Wrappers\HeaderedWrapper.cs" />
     <Compile Include="Exception\EasySocketException.cs" />
-    <Compile Include="Helper.cs" />
+    <Compile Include="Other\Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proxy.cs" />
-    <Compile Include="Wrapper.cs" />
+    <Compile Include="Other\Proxy.cs" />
+    <Compile Include="Wrappers\Wrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
