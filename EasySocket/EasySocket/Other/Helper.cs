@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EasySocket.Exception;
+using EasySocket.Exceptions;
 using System.Threading;
 using System.Net.Sockets;
 
@@ -31,17 +31,17 @@ namespace EasySocket
 			}
 			return header;
 		}
-		public static byte[] Unir(this byte[] bytes1, byte[] bytes2)
+		public static byte[] Union(this byte[] bytes1, byte[] bytes2)
 		{
 			byte[] buffer = new byte[bytes1.Length + bytes2.Length];
 			Buffer.BlockCopy(bytes1, 0, buffer, 0, bytes1.Length);
 			Buffer.BlockCopy(bytes2, 0, buffer, bytes1.Length, bytes2.Length);
 			return buffer;
 		}
-		public static void TimeoutLoop(Func<bool> condicao, int timeout)
+		public static void TimeoutLoop(Func<bool> conditional, int timeout)
 		{
-			DateTime inicial = DateTime.Now;
-			while ((DateTime.Now - inicial).Milliseconds < timeout && condicao())
+			DateTime initial = DateTime.Now;
+			while ((DateTime.Now - initial).Milliseconds < timeout && conditional())
 			{
 				Thread.Sleep(50);
 			}
