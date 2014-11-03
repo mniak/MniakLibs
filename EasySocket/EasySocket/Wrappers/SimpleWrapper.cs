@@ -1,5 +1,4 @@
-﻿using System;
-namespace EasySocket
+﻿namespace EasySocket
 {
 	public class SimpleWrapper : Wrapper
 	{

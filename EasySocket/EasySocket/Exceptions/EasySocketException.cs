@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EasySocket.Exception
+namespace EasySocket.Exceptions
 {
 	[Serializable]
 	public class EasySocketException : System.Exception

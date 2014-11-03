@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Threading;
-using EasySocket.Exception;
+using EasySocket.Exceptions;
+using System.IO;
+using System.IO.Compression;
 
 namespace EasySocket
 {
@@ -17,7 +19,6 @@ namespace EasySocket
 			lock (lockRunning)
 				this.running = false;
 		}
-
 		public void Start(Socket socket)
 		{
 			if (disposed)
@@ -30,7 +31,7 @@ namespace EasySocket
 					throw new EasySocketException("This wrapper is already running.");
 				running = true;
 			}
-			thread = new Thread(Process);
+			thread = new Thread(Read);
 			thread.Name = "Wrapper_Read";
 			thread.Start();
 		}
@@ -40,8 +41,8 @@ namespace EasySocket
 				running = false;
 		}
 
-		public delegate void RecebidoEventHandler(byte[] bytes);
-		public event RecebidoEventHandler OnReceived;
+		public delegate void ReceivedEventHandler(byte[] bytes);
+		public event ReceivedEventHandler OnReceived;
 
 		protected void Received(byte[] bytes)
 		{
@@ -50,7 +51,7 @@ namespace EasySocket
 				OnReceived(bytes);
 			}
 		}
-		private void Process()
+		private void Read()
 		{
 			try
 			{
@@ -62,18 +63,23 @@ namespace EasySocket
 						if (bytes != null)
 							Received(bytes);
 					}
-					catch (ObjectDisposedException) { }
+					catch (ObjectDisposedException)
+					{
+					}
 				}
 			}
 			catch (SocketException ex)
 			{
-				ConnectionClosed();
 			}
 			catch (ThreadAbortException)
 			{
 				// Cancel the abortation process but aborts
 				Thread.ResetAbort();
 				return;
+			}
+			finally
+			{
+				ConnectionClosed();
 			}
 		}
 
@@ -107,5 +113,6 @@ namespace EasySocket
 				OnConnectionClosed();
 		}
 		public event Action OnConnectionClosed;
+
 	}
 }

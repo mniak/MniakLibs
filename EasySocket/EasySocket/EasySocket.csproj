@@ -40,10 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\FilterException.cs" />
+    <Compile Include="Filters\GZipFilter.cs" />
+    <Compile Include="Filters\IFilter.cs" />
+    <Compile Include="Wrappers\FilterableWrapper.cs" />
     <Compile Include="Wrappers\SimpleWrapper.cs" />
-    <Compile Include="Exception\WrapperNotRunningException.cs" />
+    <Compile Include="Exceptions\WrapperNotRunningException.cs" />
     <Compile Include="Wrappers\HeaderedWrapper.cs" />
-    <Compile Include="Exception\EasySocketException.cs" />
+    <Compile Include="Exceptions\EasySocketException.cs" />
     <Compile Include="Other\Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Other\Proxy.cs" />
