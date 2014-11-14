@@ -43,6 +43,7 @@
     <Compile Include="Exceptions\FilterException.cs" />
     <Compile Include="Filters\GZipFilter.cs" />
     <Compile Include="Filters\IFilter.cs" />
+    <Compile Include="Other\IProxy.cs" />
     <Compile Include="Wrappers\FilterableWrapper.cs" />
     <Compile Include="Wrappers\SimpleWrapper.cs" />
     <Compile Include="Exceptions\WrapperNotRunningException.cs" />
