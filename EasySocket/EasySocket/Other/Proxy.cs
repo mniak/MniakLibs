@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Net.Sockets;
 using System.Threading;
+using EasySocket.Events;
+using EasySocket.Exceptions;
 
 namespace EasySocket
 {
     public class Proxy<W1, W2> : IDisposable, IProxy
-        where W1 : Wrapper, new()
-        where W2 : Wrapper, new()
+        where W1 : Wrapper
+        where W2 : Wrapper
     {
         public W1 SourceWrapper { get; private set; }
         public W2 TargetWrapper { get; private set; }
@@ -18,16 +20,16 @@ namespace EasySocket
         private Socket socketTarget;
         private AutoResetEvent lockEnd = new AutoResetEvent(false);
 
-        public Proxy(Socket source, Socket target)
+        public Proxy(Socket source, Socket target, Func<Socket, W1> newWrapper1, Func<Socket, W2> newWrapper2)
         {
             this.socketSource = source;
-            this.SourceWrapper = new W1();
-            this.SourceWrapper.OnReceived += source_OnReceived;
+            this.SourceWrapper = newWrapper1(source);
+            this.SourceWrapper.OnDataReceived += source_OnDataReceived;
             this.SourceWrapper.OnConnectionClosed += source_OnConnectionClosed;
 
             this.socketTarget = target;
-            this.TargetWrapper = new W2();
-            this.TargetWrapper.OnReceived += target_OnReceived;
+            this.TargetWrapper = newWrapper2(target);
+            this.TargetWrapper.OnDataReceived += target_OnDataReceived;
             this.TargetWrapper.OnConnectionClosed += target_OnConnectionClosed;
         }
 
@@ -40,22 +42,36 @@ namespace EasySocket
             this.Stop();
         }
 
-        private void source_OnReceived(byte[] bytes)
+        private void source_OnDataReceived(object sender, DataReceivedEventArgs e)
         {
-            if (running)
-                this.TargetWrapper.Send(bytes);
+            try
+            {
+                if (running)
+                    this.TargetWrapper.Send(e.DataBytes);
+            }
+            catch (WrapperNotRunningException ex)
+            {
+                this.Dispose();
+            }
         }
-        private void target_OnReceived(byte[] bytes)
+        private void target_OnDataReceived(object sender, DataReceivedEventArgs e)
         {
-            if (running)
-                this.SourceWrapper.Send(bytes);
+            try
+            {
+                if (running)
+                    this.SourceWrapper.Send(e.DataBytes);
+            }
+            catch (WrapperNotRunningException ex)
+            {
+                this.Dispose();
+            }
         }
         public void Start()
         {
             running = true;
             lockEnd.Reset();
-            SourceWrapper.Start(socketSource);
-            TargetWrapper.Start(socketTarget);
+            SourceWrapper.Start();
+            TargetWrapper.Start();
         }
         public void Stop()
         {
@@ -67,6 +83,8 @@ namespace EasySocket
         public void Dispose()
         {
             Stop();
+            SourceWrapper.Dispose();
+            TargetWrapper.Dispose();
         }
         public void WaitEnd()
         {
