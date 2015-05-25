@@ -1,6 +1,6 @@
-EasySocket; .NET sockets made easy!
-====================================
-The focus of the EasySocket library is to provide an easy way to work with sockets in .NET.
+Mniak.Network; Library for .net Networking with ease
+======================================================
+The focus of the Mniak.Network library is to provide an easy way to work with sockets in .NET.
 
 In many ways it has always difficult to work with sockets in .NET:
 + Receive data. (When not using byte-by-byte approach, in some times you get stuck)
@@ -18,12 +18,7 @@ The `HeaderedWrapper` will send the size of the message before of it (called hea
 
 Installation
 -----------------------
-The EasySocket library can be installed through NuGet.
-https://www.nuget.org/packages/EasySocket/
-
-Just run the following command in the Package Manager Console:
-
-    PM> Install-Package EasySocket
+TODO: Create nuget package
 
 Examples
 ----------------------
@@ -60,7 +55,7 @@ Contributions are always welcome!
 Just fork this repository, make your changes and do a pull request.
 
 ###Mailing list
-You can participate of discussions and send sugestions through our mailing list here: https://groups.google.com/forum/#!forum/easysocket
+TODO: Create mailing list
 
 TODO
 ----------------------
@@ -69,3 +64,4 @@ TODO
 + Create examples
 + Create a wrapper to work with terminated messages
 + Option to choose the endianness (byte order) of the header in the `HeaderedWrapper`.
++ Add SSL support
