@@ -1,5 +1,5 @@
 ﻿using System.Net.Sockets;
-namespace EasySocket
+namespace Mniak.Network
 {
     public class SimpleWrapper : Wrapper
     {

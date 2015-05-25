@@ -1,2 +1,6 @@
-EasySocket/EasySocket/bin/
-EasySocket/EasySocket/obj/
+**/bin/
+**/obj/
+
+**/*.suo
+**/*.user
+**/*.userprefs

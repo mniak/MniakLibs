@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Mniak.Network.Events;
+using Mniak.Network.Wrappers;
+using System;
 using System.Net.Sockets;
 using System.Threading;
-using EasySocket.Events;
-using EasySocket.Exceptions;
 
-namespace EasySocket
+namespace Mniak.Network
 {
     public class Proxy<W1, W2> : IDisposable, IProxy
         where W1 : Wrapper

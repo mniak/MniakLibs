@@ -8,7 +8,7 @@
     <ProjectGuid>{721D5AF5-1BD6-4E02-AFCA-A03297932646}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EasySocket</RootNamespace>
+    <RootNamespace>Mniak.Network</RootNamespace>
     <AssemblyName>EasySocket</AssemblyName>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -59,15 +59,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\DataReceivedEventArgs.cs" />
-    <Compile Include="Exceptions\FilterException.cs" />
+    <Compile Include="Filters\FilterException.cs" />
     <Compile Include="Filters\GZipFilter.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Other\IProxy.cs" />
     <Compile Include="Wrappers\FilterableWrapper.cs" />
     <Compile Include="Wrappers\SimpleWrapper.cs" />
-    <Compile Include="Exceptions\WrapperNotRunningException.cs" />
+    <Compile Include="Wrappers\WrapperNotRunningException.cs" />
     <Compile Include="Wrappers\HeaderedWrapper.cs" />
-    <Compile Include="Exceptions\EasySocketException.cs" />
+    <Compile Include="NetworkException.cs" />
     <Compile Include="Other\Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Other\Proxy.cs" />

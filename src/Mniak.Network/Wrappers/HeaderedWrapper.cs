@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading;
-using EasySocket.Filters;
+using Mniak.Network.Filters;
 using System.Collections.Generic;
-using EasySocket.Wrappers;
+using Mniak.Network.Wrappers;
 using System.Net.Sockets;
 
-namespace EasySocket
+namespace Mniak.Network
 {
     public class HeaderedWrapper : FilterableWrapper
     {

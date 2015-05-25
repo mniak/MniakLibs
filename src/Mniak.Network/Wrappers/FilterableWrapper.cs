@@ -1,12 +1,9 @@
-﻿using System;
+﻿using Mniak.Network.Filters;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EasySocket.Filters;
-using EasySocket.Exceptions;
 using System.Net.Sockets;
 
-namespace EasySocket.Wrappers
+namespace Mniak.Network.Wrappers
 {
     public abstract class FilterableWrapper : Wrapper
     {

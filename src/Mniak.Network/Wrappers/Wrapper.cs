@@ -1,14 +1,11 @@
-﻿using System;
+﻿using Mniak.Network.Events;
+using Mniak.Network.Wrappers;
+using System;
 using System.Net.Sockets;
-using System.Threading;
-using EasySocket.Exceptions;
-using System.IO;
-using System.IO.Compression;
-using EasySocket.Events;
 using System.Text;
-using System.Net;
+using System.Threading;
 
-namespace EasySocket
+namespace Mniak.Network
 {
     public abstract class Wrapper : IDisposable
     {
@@ -33,7 +30,7 @@ namespace EasySocket
             lock (lockRunning)
             {
                 if (running)
-                    throw new EasySocketException("This wrapper is already running.");
+                    throw new NetworkException("This wrapper is already running.");
                 running = true;
             }
             thread = new Thread(Read);

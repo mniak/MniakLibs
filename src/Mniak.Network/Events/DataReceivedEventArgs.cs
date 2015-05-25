@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EasySocket.Events
+namespace Mniak.Network.Events
 {
     public class DataReceivedEventArgs : EventArgs
     {

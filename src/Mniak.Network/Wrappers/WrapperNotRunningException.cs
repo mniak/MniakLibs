@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EasySocket.Exceptions
+namespace Mniak.Network.Wrappers
 {
     [Serializable]
     public class WrapperNotRunningException : System.Exception

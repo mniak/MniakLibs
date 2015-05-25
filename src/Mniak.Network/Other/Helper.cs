@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EasySocket.Exceptions;
 using System.Threading;
 using System.Net.Sockets;
 
-namespace EasySocket
+namespace Mniak.Network
 {
 	internal static class Helper
 	{
