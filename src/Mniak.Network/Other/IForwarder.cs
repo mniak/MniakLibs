@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Mniak.Network
 {
-    public interface IProxy
+    public interface IForwarder
     {
         Wrapper SourceWrapper { get; }
         Wrapper TargetWrapper { get; }

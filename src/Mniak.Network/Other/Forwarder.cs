@@ -6,26 +6,20 @@ using System.Threading;
 
 namespace Mniak.Network
 {
-    public class Proxy<W1, W2> : IDisposable, IProxy
-        where W1 : Wrapper
-        where W2 : Wrapper
+    public class Forwarder : IDisposable, IForwarder
     {
-        public W1 SourceWrapper { get; private set; }
-        public W2 TargetWrapper { get; private set; }
+        public Wrapper SourceWrapper { get; private set; }
+        public Wrapper TargetWrapper { get; private set; }
         private bool running;
-        private Socket socketSource;
-        private Socket socketTarget;
         private AutoResetEvent lockEnd = new AutoResetEvent(false);
 
-        public Proxy(Socket source, Socket target, Func<Socket, W1> newWrapper1, Func<Socket, W2> newWrapper2)
+        public Forwarder(Wrapper wrapper1, Wrapper wrapper2)
         {
-            this.socketSource = source;
-            this.SourceWrapper = newWrapper1(source);
+            this.SourceWrapper = wrapper1;
             this.SourceWrapper.OnDataReceived += source_OnDataReceived;
             this.SourceWrapper.OnConnectionClosed += source_OnConnectionClosed;
 
-            this.socketTarget = target;
-            this.TargetWrapper = newWrapper2(target);
+            this.TargetWrapper = wrapper2;
             this.TargetWrapper.OnDataReceived += target_OnDataReceived;
             this.TargetWrapper.OnConnectionClosed += target_OnConnectionClosed;
         }
@@ -88,11 +82,11 @@ namespace Mniak.Network
             lockEnd.WaitOne();
         }
 
-        Wrapper IProxy.SourceWrapper
+        Wrapper IForwarder.SourceWrapper
         {
             get { return this.SourceWrapper; }
         }
-        Wrapper IProxy.TargetWrapper
+        Wrapper IForwarder.TargetWrapper
         {
             get { return this.TargetWrapper; }
         }
