@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GeneralAssemblyInfo.cs">
+      <Link>Properties\GeneralAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="HybridStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempFileStream.cs" />

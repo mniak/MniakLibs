@@ -66,6 +66,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GeneralAssemblyInfo.cs">
+      <Link>Properties\GeneralAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Events\DataReceivedEventArgs.cs" />
     <Compile Include="Filters\FilterException.cs" />
     <Compile Include="Filters\GZipFilter.cs" />
