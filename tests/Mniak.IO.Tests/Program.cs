@@ -1,10 +1,7 @@
-﻿using Mniak.IO;
+﻿using Mniak.Core;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Mniak.IO.Tests
 {
@@ -12,7 +9,17 @@ namespace Mniak.IO.Tests
     {
         static void Main(string[] args)
         {
-            using (var hs = new HybridStream(4))
+            TestHybridStream();
+
+            //TestActionLock();
+
+            Console.WriteLine("END");
+            Console.ReadLine();
+        }
+
+        private static void TestHybridStream()
+        {
+            using (var hs = new HybridStream(0))
             {
                 for (int i = 0; i < 10; i++)
                 {
@@ -53,9 +60,6 @@ namespace Mniak.IO.Tests
                 Console.WriteLine("Press <Enter> to advance to next step...");
                 Console.ReadLine();
             }
-
-            Console.WriteLine("END");
-            Console.ReadLine();
         }
     }
 }

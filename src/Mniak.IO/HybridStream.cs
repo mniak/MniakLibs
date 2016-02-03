@@ -9,7 +9,6 @@ namespace Mniak.IO
         private object streamLock = new object();
         private bool usingMemory;
         private Stream innerStream;
-        private string tempFileName;
 
         public HybridStream(long threshold = DEFAULT_THRESHOLD)
         {
@@ -114,8 +113,7 @@ namespace Mniak.IO
             if (usingMemory && value > innerStream.Length && value > Threshold)
             {
                 usingMemory = false;
-                tempFileName = Path.GetTempFileName();
-                var newStream = File.Create(tempFileName);
+                var newStream = new TempFileStream();
 
                 long oldPosition = innerStream.Position;
                 innerStream.Position = 0;
@@ -138,7 +136,6 @@ namespace Mniak.IO
                 newStream.SetLength(value);
                 innerStream.CopyTo(newStream);
                 innerStream.Dispose();
-                File.Delete(tempFileName);
 
                 newStream.Position = oldPosition;
                 innerStream = newStream;
@@ -166,8 +163,6 @@ namespace Mniak.IO
                 if (disposing)
                 {
                     innerStream.Dispose();
-                    if (!usingMemory)
-                        File.Delete(tempFileName);
                 }
             }
         }

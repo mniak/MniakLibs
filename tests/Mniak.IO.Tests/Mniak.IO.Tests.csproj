@@ -49,6 +49,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Mniak.Core\Mniak.Core.csproj">
+      <Project>{d6900b1b-fb8d-4906-94c2-ca3b83b113d5}</Project>
+      <Name>Mniak.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Mniak.IO\Mniak.IO.csproj">
       <Project>{dbdb49c7-6306-450d-8bc8-ebbfe6fa0189}</Project>
       <Name>Mniak.IO</Name>

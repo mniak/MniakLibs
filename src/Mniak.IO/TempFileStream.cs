@@ -9,6 +9,7 @@ namespace Mniak.IO
 {
     public class TempFileStream : Stream
     {
+        private object streamLock = new object();
         private string tempFileName;
         private FileStream innerStream;
 
@@ -17,12 +18,15 @@ namespace Mniak.IO
             tempFileName = Path.GetTempFileName();
             innerStream = File.Create(tempFileName);
         }
-        
+
         public override bool CanRead
         {
             get
             {
-                throw new NotImplementedException();
+                lock (streamLock)
+                {
+                    return innerStream.CanRead;
+                }
             }
         }
 
@@ -30,7 +34,10 @@ namespace Mniak.IO
         {
             get
             {
-                throw new NotImplementedException();
+                lock (streamLock)
+                {
+                    return innerStream.CanSeek;
+                }
             }
         }
 
@@ -38,7 +45,10 @@ namespace Mniak.IO
         {
             get
             {
-                throw new NotImplementedException();
+                lock (streamLock)
+                {
+                    return innerStream.CanWrite;
+                }
             }
         }
 
@@ -46,7 +56,10 @@ namespace Mniak.IO
         {
             get
             {
-                throw new NotImplementedException();
+                lock (streamLock)
+                {
+                    return innerStream.Length;
+                }
             }
         }
 
@@ -54,42 +67,71 @@ namespace Mniak.IO
         {
             get
             {
-                throw new NotImplementedException();
+                lock (streamLock)
+                {
+                    return innerStream.Position;
+                }
             }
 
             set
             {
-                throw new NotImplementedException();
+                lock (streamLock)
+                {
+                    innerStream.Position = value;
+                }
             }
         }
 
         public override void Flush()
         {
-            throw new NotImplementedException();
+            lock (streamLock)
+            {
+                innerStream.Flush();
+            }
         }
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            throw new NotImplementedException();
+            lock (streamLock)
+            {
+                return innerStream.Read(buffer, offset, count);
+            }
         }
 
         public override long Seek(long offset, SeekOrigin origin)
         {
-            throw new NotImplementedException();
+            lock (streamLock)
+            {
+                return innerStream.Seek(offset, origin);
+            }
         }
 
         public override void SetLength(long value)
         {
-            throw new NotImplementedException();
+            lock (streamLock)
+            {
+                innerStream.SetLength(value);
+            }
         }
 
         public override void Write(byte[] buffer, int offset, int count)
         {
-            throw new NotImplementedException();
+            lock (streamLock)
+            {
+                innerStream.Write(buffer, offset, count);
+            }
         }
         protected override void Dispose(bool disposing)
         {
-            base.Dispose(disposing);
+            lock (streamLock)
+            {
+                base.Dispose(disposing);
+                if (disposing)
+                {
+                    innerStream.Dispose();
+                    File.Delete(tempFileName);
+                }
+            }
         }
     }
 }
