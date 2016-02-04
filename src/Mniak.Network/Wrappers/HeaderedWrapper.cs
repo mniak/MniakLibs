@@ -16,7 +16,7 @@ namespace Mniak.Network
             set
             {
                 if (value < 1 || value > 4)
-                    throw new ArgumentOutOfRangeException("The value of HeaderLength must be in the range of 1 to 4.");
+                    throw new ArgumentOutOfRangeException(nameof(HeaderLength), "The value must be in the range of 1 to 4.");
                 headerLength = value;
             }
         }

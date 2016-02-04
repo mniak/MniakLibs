@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mniak.IO
 {
@@ -29,7 +25,7 @@ namespace Mniak.IO
             get
             {
                 if (disposed)
-                    throw new ObjectDisposedException("TemporaryDirectory");
+                    throw new ObjectDisposedException(nameof(TempDirectory));
 
                 return _path;
             }
