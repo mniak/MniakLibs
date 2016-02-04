@@ -166,5 +166,11 @@ namespace Mniak.IO
                 }
             }
         }
+
+
+        public void Rewind()
+        {
+            this.Seek(0, SeekOrigin.Begin);
+        }
     }
 }
