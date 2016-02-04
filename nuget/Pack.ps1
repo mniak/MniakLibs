@@ -1,4 +1,6 @@
-﻿$projects = @(
+﻿$localRepository = "C:\NuGet Local Repository"
+
+$projects = @(
     "Mniak.Core",
     "Mniak.IO",
     "Mniak.Network"
@@ -11,4 +13,8 @@ function PackNuGet { param([string] $project)
 
 foreach ($project in $projects) {
     PackNuGet $project IncludeReferencedProjects
+}
+
+if (Test-Path $localRepository) {
+    Copy *.nupkg $localRepository
 }
