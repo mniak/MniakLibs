@@ -6,6 +6,11 @@ namespace Mniak.IO
     public sealed class TempFile : IDisposable
     {
         private bool disposed = false;
+
+        public TempFile() : this(Path.GetTempFileName())
+        {
+
+        }
         public TempFile(string path)
         {
             this._filename = path;
