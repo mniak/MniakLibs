@@ -3,18 +3,18 @@ using System.IO;
 
 namespace Mniak.IO
 {
-    public sealed class TempDirectory : IDisposable
+    public sealed class TempDir : IDisposable
     {
         private bool disposed = false;
-        public TempDirectory() : this(System.IO.Path.GetTempPath(), Guid.NewGuid().ToString())
+        public TempDir() : this(System.IO.Path.GetTempPath(), Guid.NewGuid().ToString())
         {
 
         }
-        public TempDirectory(params string[] paths) : this(System.IO.Path.Combine(paths))
+        public TempDir(params string[] paths) : this(System.IO.Path.Combine(paths))
         {
 
         }
-        public TempDirectory(string path)
+        public TempDir(string path)
         {
             this._path = path;
             if (!Directory.Exists(Path))
@@ -33,7 +33,7 @@ namespace Mniak.IO
             get
             {
                 if (disposed)
-                    throw new ObjectDisposedException(nameof(TempDirectory));
+                    throw new ObjectDisposedException(nameof(TempDir));
 
                 return _path;
             }

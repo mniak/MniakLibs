@@ -47,7 +47,7 @@
     <Compile Include="HybridStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempFile.cs" />
-    <Compile Include="TempDirectory.cs" />
+    <Compile Include="TempDir.cs" />
     <Compile Include="TempFileStream.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
