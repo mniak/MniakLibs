@@ -19,7 +19,7 @@ namespace Mniak.IO
             CreateDirectory(dirPath);
         }
 
-        private static void CreateDirectory(string directoryPath)
+        public static void CreateDirectory(string directoryPath)
         {
             if (directoryPath == null)
                 throw new ArgumentNullException(nameof(directoryPath));
