@@ -4,11 +4,11 @@
     "Mniak.Network"
 )
 
-function GenerateNuSpec { param([string] $project)
+function PackNuGet { param([string] $project)
     $csproj = Join-Path (Join-Path (Join-Path .. src) $project ) ($project + ".csproj")
     NuGet pack $csproj
 }
 
 foreach ($project in $projects) {
-    GenerateNuSpec $project IncludeReferencedProjects
+    PackNuGet $project IncludeReferencedProjects
 }
