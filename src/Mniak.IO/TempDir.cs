@@ -6,6 +6,14 @@ namespace Mniak.IO
     public sealed class TempDirectory : IDisposable
     {
         private bool disposed = false;
+        public TempDirectory() : this(System.IO.Path.GetTempPath(), Guid.NewGuid().ToString())
+        {
+
+        }
+        public TempDirectory(params string[] paths) : this(System.IO.Path.Combine(paths))
+        {
+
+        }
         public TempDirectory(string path)
         {
             this._path = path;

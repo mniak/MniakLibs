@@ -7,31 +7,34 @@ namespace Mniak.IO
     {
         private bool disposed = false;
 
-        public TempFile() : this(Path.GetTempFileName())
+        public TempFile() : this(System.IO.Path.GetTempFileName())
         {
 
         }
+        public TempFile(params string[] paths) : this(System.IO.Path.Combine(paths))
+        {
+        }
         public TempFile(string path)
         {
-            this._filename = path;
-            FileSystemUtils.CreateDirectoryOfFile(Filename);
+            this._path = path;
+            FileSystemUtils.CreateDirectoryOfFile(Path);
         }
         public void Dispose()
         {
             if (disposed)
                 return;
 
-            File.Delete(Filename);
+            File.Delete(Path);
         }
-        private string _filename;
-        public string Filename
+        private string _path;
+        public string Path
         {
             get
             {
                 if (disposed)
                     throw new ObjectDisposedException(nameof(TempFile));
 
-                return _filename;
+                return _path;
             }
         }
     }
