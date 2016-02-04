@@ -18,6 +18,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mniak.IO.Tests", "tests\Mniak.IO.Tests\Mniak.IO.Tests.csproj", "{309043B2-4358-4675-8FD2-91AA6F9A7A6C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{BC914207-C8EA-4453-B518-C3F3403BA817}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\Pack.ps1 = nuget\Pack.ps1
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "General", "General", "{7C2F6D32-FB36-453C-B8D4-57D1169A39DF}"
 	ProjectSection(SolutionItems) = preProject
