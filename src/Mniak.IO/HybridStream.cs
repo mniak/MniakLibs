@@ -2,7 +2,7 @@
 
 namespace Mniak.IO
 {
-    public class HybridStream : Stream
+    public sealed class HybridStream : Stream
     {
         private const long DEFAULT_THRESHOLD = 1 * 1024 * 1024; // 1 MB
 

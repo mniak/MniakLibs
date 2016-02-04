@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mniak.IO
 {
-    public class TempFileStream : Stream
+    public sealed class TempFileStream : Stream
     {
         private object streamLock = new object();
         private string tempFileName;
