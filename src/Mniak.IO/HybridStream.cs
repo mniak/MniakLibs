@@ -150,7 +150,9 @@ namespace Mniak.IO
         {
             lock (streamLock)
             {
-                InnerSetLength(Position + count);
+                long requiredLength = Position + count;
+                if (requiredLength > innerStream.Length)
+                    InnerSetLength(requiredLength);
                 innerStream.Write(buffer, offset, count);
             }
         }
@@ -170,7 +172,23 @@ namespace Mniak.IO
 
         public void Rewind()
         {
-            this.Seek(0, SeekOrigin.Begin);
+            this.Position = 0;
+        }
+        public byte[] ToArray()
+        {
+            lock (streamLock)
+            {
+                var ms = innerStream as MemoryStream;
+                if (ms != null)
+                    return ms.ToArray();
+
+                var pos = innerStream.Position;
+                var len = innerStream.Length;
+                var buffer = new byte[len];
+                innerStream.Read(buffer, 0, buffer.Length);
+                innerStream.Position = pos;
+                return buffer;
+            }
         }
     }
 }
