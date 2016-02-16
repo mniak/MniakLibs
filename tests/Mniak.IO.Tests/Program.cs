@@ -1,9 +1,7 @@
-﻿using Mniak.Core;
-using System;
+﻿using System;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Threading;
 
 namespace Mniak.IO.Tests
 {
