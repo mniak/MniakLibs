@@ -71,7 +71,7 @@
     </Compile>
     <Compile Include="Exceptions\SecureSocketException.cs" />
     <Compile Include="Sockets\ISocket.cs" />
-    <Compile Include="SecureSocketFactory.cs" />
+    <Compile Include="Sockets\SecureSocketFactory.cs" />
     <Compile Include="_Extensions\AsyncExtensions.cs" />
     <Compile Include="Events\DataReceivedEventArgs.cs" />
     <Compile Include="Filters\FilterException.cs" />
