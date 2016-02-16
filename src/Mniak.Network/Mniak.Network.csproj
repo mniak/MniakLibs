@@ -70,7 +70,7 @@
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Exceptions\SecureSocketException.cs" />
-    <Compile Include="ISocket.cs" />
+    <Compile Include="Sockets\ISocket.cs" />
     <Compile Include="SecureSocketFactory.cs" />
     <Compile Include="_Extensions\AsyncExtensions.cs" />
     <Compile Include="Events\DataReceivedEventArgs.cs" />
@@ -78,7 +78,7 @@
     <Compile Include="Filters\GZipFilter.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Other\IForwarder.cs" />
-    <Compile Include="SecureSocket.cs" />
+    <Compile Include="Sockets\SecureSocket.cs" />
     <Compile Include="Wrappers\FilterableWrapper.cs" />
     <Compile Include="Wrappers\SimpleWrapper.cs" />
     <Compile Include="Wrappers\WrapperNotRunningException.cs" />

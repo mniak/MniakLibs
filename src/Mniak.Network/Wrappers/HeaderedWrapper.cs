@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading;
-using Mniak.Network.Filters;
-using System.Collections.Generic;
-using Mniak.Network.Wrappers;
+﻿using Mniak.Network.Wrappers;
+using System;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace Mniak.Network
 {

@@ -1,7 +1,8 @@
-﻿using System.Net.Sockets;
+﻿using Mniak.Network.Sockets;
+using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Mniak.Network
+namespace Mniak.Network.Sockets
 {
     public class SecureSocketFactory
     {

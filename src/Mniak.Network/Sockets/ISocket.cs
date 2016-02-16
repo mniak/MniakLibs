@@ -5,7 +5,7 @@ using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
-namespace Mniak.Network
+namespace Mniak.Network.Sockets
 {
     public interface ISocket
     {

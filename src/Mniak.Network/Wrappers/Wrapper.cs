@@ -70,7 +70,7 @@ namespace Mniak.Network
                             Stop();
                             ConnectionClosed();
                         }
-                        
+
                         Received(bytes);
                     }
                     catch (ObjectDisposedException)
