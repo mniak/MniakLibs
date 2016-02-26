@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mniak.WPF", "src\Mniak.WPF\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mniak.Network.UnitTests", "unittests\Mniak.Network.UnitTests\Mniak.Network.UnitTests.csproj", "{1D27A0D5-4B87-44CB-B906-B520012B9CF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mniak.Network.Tests", "tests\Mniak.Network.Tests\Mniak.Network.Tests.csproj", "{7D2B769D-B23E-499F-950F-F76243C37F05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,18 @@ Global
 		{1D27A0D5-4B87-44CB-B906-B520012B9CF5}.Release|x64.Build.0 = Release|Any CPU
 		{1D27A0D5-4B87-44CB-B906-B520012B9CF5}.Release|x86.ActiveCfg = Release|Any CPU
 		{1D27A0D5-4B87-44CB-B906-B520012B9CF5}.Release|x86.Build.0 = Release|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Debug|x64.Build.0 = Debug|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Debug|x86.Build.0 = Debug|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Release|x64.ActiveCfg = Release|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Release|x64.Build.0 = Release|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Release|x86.ActiveCfg = Release|Any CPU
+		{7D2B769D-B23E-499F-950F-F76243C37F05}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,5 +138,6 @@ Global
 		{309043B2-4358-4675-8FD2-91AA6F9A7A6C} = {77D330E8-C475-4496-A43E-F92F358B78DA}
 		{52325E9D-15F4-4ACA-A8DB-D880BA1B1E92} = {0ACAEF28-93A5-4B45-BC25-DC8BACEC71B4}
 		{1D27A0D5-4B87-44CB-B906-B520012B9CF5} = {32E5270A-6D24-42D4-8B0B-B0E42EF33B3E}
+		{7D2B769D-B23E-499F-950F-F76243C37F05} = {77D330E8-C475-4496-A43E-F92F358B78DA}
 	EndGlobalSection
 EndGlobal
