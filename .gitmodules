@@ -1,0 +1,3 @@
+[submodule "src/Mniak.IO"]
+	path = src/Mniak.IO
+	url = git@github.com:andregsilv/Mniak.IO.git
