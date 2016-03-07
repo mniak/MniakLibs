@@ -1,0 +1,12 @@
+[submodule "src/Mniak.Core"]
+	path = src/Mniak.Core
+	url = git@github.com:Mniak/Mniak.Core.git
+[submodule "src/Mniak.IO"]
+	path = src/Mniak.IO
+	url = git@github.com:Mniak/Mniak.IO.git
+[submodule "src/Mniak.Network"]
+	path = src/Mniak.Network
+	url = git@github.com:Mniak/Mniak.Network.git
+[submodule "src/Mniak.Wpf"]
+	path = src/Mniak.Wpf
+	url = git@github.com:Mniak/Mniak.Wpf.git
