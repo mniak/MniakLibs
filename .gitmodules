@@ -2,12 +2,14 @@
 	path = src/Mniak.IO
 	url = git@github.com:Mniak/Mniak.IO.git
 	
-[submodule "src/mniakcore"]
-	path = src/mniakcore
+[submodule "src/Mniak.Core"]
+	path = src/Mniak.Core
 	url = git@github.com:Mniak/Mniak.Core.git
-[submodule "src/m.net"]
-	path = src/m.net
+	
+[submodule "src/Mniak.Network"]
+	path = src/Mniak.Network
 	url = git@github.com:Mniak/Mniak.Network.git
-[submodule "src/m.wpf"]
-	path = src/m.wpf
+	
+[submodule "src/Mniak.Wpf"]
+	path = src/Mniak.Wpf
 	url = git@github.com:Mniak/Mniak.WPF.git
