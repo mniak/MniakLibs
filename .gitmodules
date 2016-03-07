@@ -5,3 +5,9 @@
 [submodule "src/mniakcore"]
 	path = src/mniakcore
 	url = git@github.com:Mniak/Mniak.Core.git
+[submodule "src/m.net"]
+	path = src/m.net
+	url = git@github.com:Mniak/Mniak.Network.git
+[submodule "src/m.wpf"]
+	path = src/m.wpf
+	url = git@github.com:Mniak/Mniak.WPF.git
