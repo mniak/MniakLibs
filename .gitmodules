@@ -1,3 +1,7 @@
 [submodule "src/Mniak.IO"]
 	path = src/Mniak.IO
-	url = git@github.com:andregsilv/Mniak.IO.git
+	url = git@github.com:Mniak/Mniak.IO.git
+	
+[submodule "src/mniakcore"]
+	path = src/mniakcore
+	url = git@github.com:Mniak/Mniak.Core.git
