@@ -78,7 +78,7 @@ namespace Mniak.Network
                     }
                 }
             }
-            catch (SocketException ex)
+            catch (SocketException)
             {
             }
             catch (ThreadAbortException)

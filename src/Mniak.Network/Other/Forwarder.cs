@@ -40,7 +40,7 @@ namespace Mniak.Network
                 if (running)
                     this.TargetWrapper.Send(e.DataBytes);
             }
-            catch (WrapperNotRunningException ex)
+            catch (WrapperNotRunningException)
             {
                 this.Dispose();
             }
@@ -52,7 +52,7 @@ namespace Mniak.Network
                 if (running)
                     this.SourceWrapper.Send(e.DataBytes);
             }
-            catch (WrapperNotRunningException ex)
+            catch (WrapperNotRunningException)
             {
                 this.Dispose();
             }
