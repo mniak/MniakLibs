@@ -1,4 +1,4 @@
-MniakLibs; A collection of libraries to make your life easier
+MniakLibs; Libraries to simplify my life
 ======================================================
 
 This project is a work in progress.
