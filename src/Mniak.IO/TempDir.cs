@@ -25,7 +25,20 @@ namespace Mniak.IO
             if (disposed)
                 return;
 
-            Directory.Delete(Path, true);
+            try
+            {
+                Directory.Delete(Path, true);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                var files = new DirectoryInfo(Path).EnumerateFiles("*", SearchOption.AllDirectories);
+                foreach (var f in files)
+                {
+                    f.Attributes = f.Attributes & ~FileAttributes.ReadOnly;
+                    f.Delete();
+                }
+                Directory.Delete(Path, true);
+            }
         }
         private string _path;
         public string Path
