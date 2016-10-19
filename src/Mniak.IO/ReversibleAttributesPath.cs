@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Mniak.IO
 {
-    internal class ReversibleAttributes : IDisposable
+    public class ReversibleAttributes : IDisposable
     {
         FileAttributes attributes;
         private readonly string path;
