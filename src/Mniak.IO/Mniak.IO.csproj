@@ -46,6 +46,7 @@
     <Compile Include="FileSystemUtils.cs" />
     <Compile Include="HybridStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReversibleAttributesPath.cs" />
     <Compile Include="TempFile.cs" />
     <Compile Include="TempDir.cs" />
     <Compile Include="TempFileStream.cs" />
