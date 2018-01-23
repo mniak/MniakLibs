@@ -138,10 +138,12 @@ namespace Mniak.Network
             disposed = true;
         }
 
+        private bool closed;
         private void ConnectionClosed()
         {
-            if (OnConnectionClosed != null)
-                OnConnectionClosed();
+            if (closed) return;
+            else closed = true;
+            OnConnectionClosed?.Invoke();
         }
         public event Action OnConnectionClosed;
 

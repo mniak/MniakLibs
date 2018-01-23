@@ -7,7 +7,7 @@
     <Authors>Andre Soares</Authors>
     <Product>Mniak.Core library, of MniakLibs project.</Product>
     <PackageId>Mniak.Core</PackageId>
-    <AssemblyVersion>2.0.0.0/AssemblyVersion>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>
     <NeutralLanguage>en</NeutralLanguage>
     <Description></Description>
