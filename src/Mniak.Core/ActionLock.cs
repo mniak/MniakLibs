@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
 namespace Mniak.Core
 {
     public sealed class ActionLock
     {
-        private object internalLock = new object();
+        private object lockObject = new object();
 
         public void Invoke(Action action)
         {
-            lock (internalLock)
+            lock (lockObject)
             {
                 action.Invoke();
             }
