@@ -2,11 +2,13 @@
 using System;
 using System.Net.Sockets;
 using System.Threading;
+using Mniak.Network.Logging;
 
 namespace Mniak.Network
 {
     public class HeaderedWrapper : FilterableWrapper
     {
+        private static readonly ILog logger = LogProvider.For<HeaderedWrapper>();
         private int headerLength = 4;
         public int HeaderLength
         {
@@ -28,31 +30,34 @@ namespace Mniak.Network
         protected override void InnerSend(byte[] bytes)
         {
             bytes = ProcessFiltersSend(bytes);
-            byte[] header = bytes.GetHeader(HeaderLength);
-            byte[] all = header.Union(bytes);
+            var header = bytes.GetHeader(HeaderLength);
+            var all = header.Union(bytes);
             //FIX: Quando dá queda de conexão não está tratando exception
             socket.Send(all);
         }
         protected override byte[] Receive()
         {
-            ulong length = ReadHeader();
-            byte[] body = ReadBody(length);
+            logger.Trace("Waiting for the message header");
+            var length = ReadHeader();
+            logger.Trace("Received message header: {ByteCount}. Waiting message.", length);
+            var body = ReadBody(length);
+            logger.Trace("Message received");
 
             if (body == null)
                 return null;
 
-            byte[] data = ProcessFiltersReceive(body);
+            var data = ProcessFiltersReceive(body);
             return data;
         }
 
         private ulong ReadHeader()
         {
-            byte[] header = new byte[HeaderLength];
+            var header = new byte[HeaderLength];
             while (running
                     && !socket.Poll(10, SelectMode.SelectRead) || socket.Available > 0
                     && socket.Available < HeaderLength)
             {
-                Thread.Sleep(100);
+                Thread.Sleep(50);
             }
 
             // If it is not running then abort
@@ -62,9 +67,8 @@ namespace Mniak.Network
 
             if (n < HeaderLength)
                 return 0;
-            ulong tamanho = header.AsInteger();
-
-            return tamanho;
+            var length = header.AsInteger();
+            return length;
         }
         private byte[] ReadBody(ulong length)
         {
@@ -79,8 +83,8 @@ namespace Mniak.Network
             if (!running)
                 return null;
 
-            byte[] buffer = new byte[length];
-            int n = socket.Receive(buffer);
+            var buffer = new byte[length];
+            var n = socket.Receive(buffer);
             if (n < HeaderLength)
                 return null;
 
