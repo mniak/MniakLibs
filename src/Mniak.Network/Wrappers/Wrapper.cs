@@ -4,6 +4,7 @@ using System;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Linq;
 
 namespace Mniak.Network
 {
@@ -51,6 +52,9 @@ namespace Mniak.Network
 
         protected void Received(byte[] bytes)
         {
+            if (!bytes.Any())
+                return;
+            
             if (running && OnDataReceived != null)
             {
                 OnDataReceived(this, new DataReceivedEventArgs(bytes, this.Encoding));

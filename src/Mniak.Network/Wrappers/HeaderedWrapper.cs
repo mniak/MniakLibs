@@ -73,7 +73,7 @@ namespace Mniak.Network
         private byte[] ReadBody(ulong length)
         {
             // If it is not running then abort
-            if (!running || length < 1)
+            if (!running || length == 0)
                 return null;
 
             // Wait for all bytes available
