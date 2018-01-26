@@ -37,11 +37,11 @@ namespace Mniak.Network
         }
         protected override byte[] Receive()
         {
-            logger.Trace("Waiting for the message header");
+            logger.Debug("Waiting for the message header");
             var length = ReadHeader();
-            logger.Trace("Received message header: {ByteCount}. Waiting message.", length);
+            logger.Debug("Received message header: {ByteCount}. Waiting message.", length);
             var body = ReadBody(length);
-            logger.Trace("Message received");
+            logger.Debug("Message received");
 
             if (body == null)
                 return null;
@@ -57,6 +57,7 @@ namespace Mniak.Network
                     && !socket.Poll(10, SelectMode.SelectRead) || socket.Available > 0
                     && socket.Available < HeaderLength)
             {
+                logger.Trace("Polling. Available bytes ({AvailableBytes}) < header length ({HeaderLength})", socket.Available, HeaderLength); 
                 Thread.Sleep(50);
             }
 
