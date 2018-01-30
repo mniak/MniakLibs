@@ -21,6 +21,9 @@ namespace Mniak.Network
 
         public Wrapper(Socket socket)
         {
+            if (socket == null)
+                throw new ArgumentNullException(nameof(socket), "Socket is null.");
+
             this.running = false;
 
             this.Encoding = Encoding.Default;
